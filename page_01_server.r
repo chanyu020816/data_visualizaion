@@ -268,9 +268,9 @@ output$page01_ui_tables <- renderUI({
         # print("data1")
         # print(data)
         # output 表格資料
-        output[[tableId]] <- DT::renderDataTable(
-          data, options = list(dom = 'ft')
-        )
+        output[[tableId]] <- renderTable({
+          data
+        })
       }
     })
   }
@@ -290,9 +290,9 @@ output$page01_ui_tables <- renderUI({
         # print("data2")
         #print(data)
         # output 表格資料
-        output[[tableId]] <- DT::renderDataTable(
-          data, options = list(dom = 'ft')
-        )
+        output[[tableId]] <- renderTable({
+          data
+        })
       }
     })
   }
@@ -314,7 +314,7 @@ output$page01_ui_tables <- renderUI({
     } else {
       for(i in 1:(cate_dataPage + ifelse(cate_left > 0, 1, 0))) {
         catetableId = paste0("cateTable_", i)
-        Result[[length(Result) + 1]] <- DT::dataTableOutput(catetableId)
+        Result[[length(Result) + 1]] <- tableOutput(catetableId)
       }
     }
     ### 連續型資料
@@ -325,7 +325,7 @@ output$page01_ui_tables <- renderUI({
     } else {
       for(i in 1:(cont_dataPage + ifelse(cont_left > 0, 1, 0))) {
         conttableId = paste0("contTable_", i)
-        Result[[Start + 1]] <- DT::dataTableOutput(conttableId)
+        Result[[Start + 1]] <- tableOutput(conttableId)
         Start = Start + 1
       }
 

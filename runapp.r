@@ -1,3 +1,3 @@
 # start up (for Vim)
 library(shiny)
-shiny::runApp('~/Desktop/TSDC/')
+shiny::runApp('~/Desktop/data_visualization/')

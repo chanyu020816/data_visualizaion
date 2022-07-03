@@ -205,7 +205,7 @@ observe({
       # 以所選X軸變數排序
       scale_x_discrete(
         limits = unlist(unique(df_group_1[,input$page04_discrete_select1]), use.names = F)
-        )
+      )
   },
   # 顯示圖的寬高
   width = input$page04_ui_download_width_num1,
