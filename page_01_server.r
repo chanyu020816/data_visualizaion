@@ -336,6 +336,7 @@ output$page01_ui_tables <- renderUI({
 
 # 遺失值處理方式選單
 output$missvalue_select <- renderUI({
+  req(input$page01_file1)
   data = data_upload()
   data <- dplyr::rename_all(data, make.names)
   # 計算遺失值數量
@@ -393,3 +394,37 @@ output$missvalue_select <- renderUI({
 })
 # 提前跑出選單
 outputOptions(output, "missvalue_select", suspendWhenHidden = FALSE)
+observeEvent(input$feeback_bttn, {
+  showModal(
+    modalDialog(
+      title = "Feeback",
+      textInput("feeback_text", "Write your feeback here!"),
+      column(12, align = "right", id = "button",
+        actionButton("feeback_submit", "Submit"))
+    )
+  )
+})
+
+formData <- reactive({
+  data <- data.frame(
+    c(as.character(Sys.time()), input$feeback_text)
+  )
+})
+save_data_gsheets <- function(data) {
+  sheet_append(
+    data = as.data.frame(t(data)),
+    ss = "1p2Tf67HFU0heTtxgBaWjnrvFclo3vyT3oKZ102EBhAo",
+    sheet = "Sheet1"
+  )
+}
+observeEvent(input$feeback_submit, {
+  save_data_gsheets(formData())
+})
+observeEvent(input$feeback_submit, {
+  showModal(
+    modalDialog(
+      title = "Thank You!!",
+      "We have received your feeback, have a good day!"
+    )
+  )
+})

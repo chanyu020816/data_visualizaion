@@ -18,6 +18,7 @@ library(DMwR2)
 library(scales)
 library(stringr)
 require(showtext)
+library(googlesheets4)
 
 # 載入中文字體
 showtext_auto()

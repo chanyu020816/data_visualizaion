@@ -14,7 +14,6 @@ function(input, output, session) {
       )
     )
   }
-  
   ### page 01 - 資料
   source("./page_01_server.r", encoding="utf-8", local = T)
 
@@ -28,4 +27,3 @@ function(input, output, session) {
   source("./page_04_server.r", encoding="utf-8", local = T)
 
 }
-

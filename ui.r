@@ -13,7 +13,6 @@ dashboardPage(
         tabName = "page01_data",
         icon = icon(name = "database", lib = "font-awesome")
       ),
-      
       # tab 02 - 散佈圖
       menuItem(
         # font-awesome 沒有散佈圖，因此只能用圖片
@@ -31,7 +30,7 @@ dashboardPage(
       menuItem(
         "長條圖", 
         tabName = "page03_barChart",
-        icon = icon(name = "chart-bar", lib = "font-awesome") 
+        icon = icon(name = "chart-bar", lib = "font-awesome")
       ),
       # tab 04 - 折線圖
       menuItem(
@@ -58,7 +57,7 @@ dashboardPage(
   ),
   # 頁尾
   footer = dashboardFooter(
-    left = "Team C 學員：林書羽、劉宸宇", 
+      actionButton("feeback_bttn", "Feeback", icon = icon("comment-dots"), status = "primary")
     # right = "業師：唐子鈞"
   )
 )
