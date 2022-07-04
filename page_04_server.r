@@ -79,7 +79,7 @@ observeEvent(input$page04_actionLink_axis_label, {
 output$page04_group_colours <- renderUI({
   req(input$page04_group_colours_check1)
   colourInputList_04 <- list()
-  for (i in 1:length(input$page04_group_select1)) {
+  for (i in seq_len(length(input$page04_group_select1))) {
     colourInputList_04[[i]] = colourInput(
       paste0('page4_colour_', i),
       label = paste0('第', i, '個變數'),
@@ -128,7 +128,7 @@ observe({
     
     # 顏色向量
     values <- c()
-    for (i in 1:length(input$page04_group_select1)) {
+    for (i in seq_len(length(input$page04_group_select1))) {
       values[[i]] <- input[[paste0('page4_colour_', as.character(i))]]
     }
     # 判斷是否自設顏色

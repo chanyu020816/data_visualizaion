@@ -20,15 +20,21 @@ data_upload = function() {
   } else {
     switch(
       file_type,
-      xlsx = read_excel(input$page01_file1$datapath, sheet = input$sheet_select),
-      ods = read_ods(input$page01_file1$datapath, sheet = input$sheet_select)
+      xlsx = read_excel(
+        input$page01_file1$datapath,
+        sheet = input$sheet_select
+      ),
+      ods = read_ods(
+        input$page01_file1$datapath,
+        sheet = input$sheet_select
+      )
     )
   }
   data
 }
-# 眾數方程式
+# 眾數方程式d
 getmode <- function(x) {
-  x = x[which(!is.na(x))]
+  x <- x[which(!is.na(x))]
   uniqv <- unique(x)
   uniqv[which.max(tabulate(match(x, uniqv)))]
 }
@@ -60,7 +66,7 @@ data <- reactive({
   mvcateCols = which(colSums(is.na(catedata)) > 0)
   if (length(mvcateCols) > 0) {
     mvColnames = colnames(catedata[mvcateCols])
-    for (i in 1:length(mvColnames)) {
+    for (i in seq_len(length(mvColnames))) {
       col = paste0("page01_MVcatemethod", i)
       # 處理方式選單結果
       choices = strsplit(as.character(input[[as.character(col)]]), ":")
@@ -86,7 +92,7 @@ data <- reactive({
   mvcontCols = which(colSums(is.na(contdata)) > 0)
   if (length(mvcontCols) > 0) {
     mvColnames = colnames(contdata[mvcontCols])
-    for (i in 1:length(mvColnames)) {
+    for (i in seq_len(length(mvColnames))) {
       cont_col = paste0("page01_MVcontmethod", i)
       # 處理方式選單結果
       choices = strsplit(as.character(input[[as.character(cont_col)]]), ":")[[1]][1]
@@ -168,7 +174,7 @@ output$page01_variables <- renderUI({
 
   dataColnames = colnames(data)
   selectInputList = list()
-  for (i in 1:length(dataColnames)) {
+  for (i in seq_len(length(dataColnames))) {
     selectInputList[[i]] = selectInput(
       paste0("page1_var", i),
       dataColnames[i],
@@ -212,7 +218,7 @@ colTypeData <- reactive({
   dataColnames = colnames(coldata)
   cate_index = c()
   cont_index = c()
-  for (i in 1:length(coldata)) {
+  for (i in seq_len(length(coldata))) {
     type <- paste0("page1_var", i)
 
     if (input[[as.character(type)]] == "類別") {
@@ -252,7 +258,7 @@ output$page01_ui_tables <- renderUI({
   cateCols <- colTypeData()$label_cate
   contCols <- colTypeData()$label_cont
   
-  for(i in 1:length(cateCols)) {
+  for (i in seq_len(length(cateCols))) {
     local({
       # 如果 i 可以整除 6，或是已經到最後一筆
       if (i %% n == 0 || i == length(cateCols)) {
@@ -263,10 +269,7 @@ output$page01_ui_tables <- renderUI({
         # 表格資料
         index = (1:n) + (nowPage - 1) * n
         colname = na.omit(cateCols[index])
-        # data = head(data()[, colname], input$row_nums)
         data = head(data_label[, colname], input$row_nums)
-        # print("data1")
-        # print(data)
         # output 表格資料
         output[[tableId]] <- renderTable({
           data
@@ -274,7 +277,7 @@ output$page01_ui_tables <- renderUI({
       }
     })
   }
-  for(i in 1:length(contCols)) {
+  for(i in seq_len(length(contCols))) {
     local({
       # 如果 i 可以整除 6，或是已經到最後一筆
       if (i %% n == 0 || i == length(contCols)) {
@@ -285,10 +288,7 @@ output$page01_ui_tables <- renderUI({
         # 表格資料
         index = (1:n) + (nowPage - 1) * n
         colname = na.omit(contCols[index])
-        # data = head(data()[, colname], input$row_nums)
         data = head(data_label[, colname], input$row_nums)
-        # print("data2")
-        #print(data)
         # output 表格資料
         output[[tableId]] <- renderTable({
           data
@@ -350,7 +350,7 @@ output$missvalue_select <- renderUI({
   if (length(mvcontCols) > 0) {
     mvColnames = colnames(contdata[mvcontCols])
     #
-    for (i in 1:length(mvColnames)) {
+    for (i in seq_len(length(mvColnames))) {
       MV_num = colSums(is.na(data))[mvColnames[i]]
       mean_value = mean(data[[mvColnames[i]]], na.rm = TRUE)
       median_value = median(data[[mvColnames[i]]], na.rm = TRUE)
@@ -371,7 +371,7 @@ output$missvalue_select <- renderUI({
   # 類別型資料遺失值
   if (length(mvcateCols) > 0) {
     mvColnames = colnames(catedata[mvcateCols])
-    for (i in 1:length(mvColnames)) {
+    for (i in seq_len(length(mvColnames))) {
       MV_num = colSums(is.na(data))[mvColnames[i]]
       mode_value = names(sort(-table(data[[mvColnames[i]]])))[1]
       mode_label = paste0("眾數:", mode_value)

@@ -1,4 +1,4 @@
-my_packages = c(
+my_packages <- c(
     "shiny",
     "bs4Dash",
     "DT",
@@ -19,7 +19,7 @@ my_packages = c(
     "scales",
     "stringrrequireshowtext"
 )
-install_if_missing = function(p) {
+install_if_missing <- function(p) {
   if (p %in% rownames(installed.packages()) == FALSE) {
     install.packages(p)
   }
