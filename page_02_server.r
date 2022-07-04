@@ -244,3 +244,10 @@ outputOptions(output, "page02_choose_color", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_choose_size", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_ui_x_title", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_ui_y_title", suspendWhenHidden = FALSE)
+
+###
+# r
+# ggplot(data = iris, aes(Petal.Length, Petal.Width, color = Species)) +
+#   geom_point() +
+#   scale_color_manual(values = c("setosa" = "red", "versicolor" = "blue", "virginica" = "yellow"))
+###
