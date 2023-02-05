@@ -57,7 +57,25 @@ output$page03_ui_y_title_text1 <- renderUI({
     value = default_03_y
   )
 })
-
+output$barchart_fun_select1 <- renderUI({
+  req(data())
+  selectInput(
+    'page03_ui_fun_select1',
+    # 說明視窗
+    label = HTML(
+      '呈現方式',
+      as.character(
+        actionLink(
+          'page03_actionLink_fun',
+          label = '',
+          icon = icon(name = 'question-circle', lib = 'font-awesome', 'fa-xs')
+        )
+      )
+    ),
+    choices = c('總和', '平均數', '最大值', '最小值', '計數'),
+    selected = '平均數'
+  )
+})
 ## 群組變數
 output$page03_ui_discrete_group_select1 <- renderUI({
   # 選項

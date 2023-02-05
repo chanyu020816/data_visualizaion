@@ -1,6 +1,6 @@
 # tab 03 - 長條圖
 tabItem(
-  tabName = 'page03_barChart',
+  tabName = 'ranking_barChart',
   fluidRow(
     box(
       width = 4 ,
@@ -17,22 +17,7 @@ tabItem(
           # 選擇群組變數(類別)
           uiOutput('page03_ui_discrete_group_select1'),
           # 選呈現方式(總和,平均數,最大值,最小值)
-          selectInput(
-            'page03_ui_fun_select1',
-            # 說明視窗
-            label = HTML(
-              '呈現方式',
-              as.character(
-                actionLink(
-                  'page03_actionLink_fun',
-                  label = '',
-                  icon = icon(name = 'question-circle', lib = 'font-awesome', 'fa-xs')
-                )
-              )
-            ),
-            choices = c('總和', '平均數', '最大值', '最小值', '計數'),
-            selected = '平均數'
-          )
+          uiOutput("barchart_fun_select1")
         ),
         # 外觀分頁
         tabPanel(

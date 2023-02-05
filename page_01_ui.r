@@ -8,18 +8,18 @@ tabItem(
       collapsible = FALSE,
       tabsetPanel(
         tabPanel(
-          "資料",
+          "Data",
           fileInput(
             inputId = "page01_file1",
-            "上傳資料：",
-            buttonLabel = "瀏覽",
-            placeholder = "csv, tsv, xlsx, ods檔案",
+            "Data Upload：",
+            buttonLabel = "Browse",
+            placeholder = "csv, tsv, xlsx, ods Files",
             accept = c(".csv", ".tsv", ".xlsx", ".ods")
           ),
           uiOutput("page01_sheet_choices"),
           radioButtons(
             "encoding",
-            "請選擇資料編碼:",
+            "Encoding:",
             choices = c("UTF-8", "Big-5"),
             selected = "UTF-8",
             inline = TRUE
@@ -29,15 +29,15 @@ tabItem(
             uiOutput("rowNums"),
             uiOutput("colNums")
           ),
-          h6(strong("資料摘要")),
+          h6(strong("Data_Summary")),
           uiOutput("data_summary")
         ),
         tabPanel(
-          "變數",
+          "Variables",
           uiOutput("page01_variables")
         ),
         tabPanel(
-          "遺失值",
+         "Missing Value",
           uiOutput("missvalue_select")
         )
       )

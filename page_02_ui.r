@@ -1,6 +1,6 @@
 # tab 02 - 散佈圖
 tabItem(
-  tabName = "page02_scatter",
+  tabName = "correlation_scatter",
   fluidRow(
     box(
       width = 4,
@@ -8,7 +8,7 @@ tabItem(
       collapsible = FALSE,
       tabsetPanel(
         tabPanel(
-          "變數",
+          "Variable",
           # 變數 X
           uiOutput("page02_ui_select_x"),
           # 變數 Y
@@ -17,12 +17,12 @@ tabItem(
           uiOutput("page2_OthersVar")
         ),
         tabPanel(
-          "迴歸"
+          "Regression"
         ),
         tabPanel(
-          "外觀",
+          "Appearance",
           # 輸入標題
-          textInput("page2_title", "請輸入圖標題", value = "散佈圖"),
+          textInput("page2_title", "Title", value = "散佈圖"),
           splitLayout(
              # X軸標題
             uiOutput('page02_ui_x_title'),
