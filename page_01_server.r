@@ -70,7 +70,7 @@ data <- reactive({
       col = paste0("page01_MVcatemethod", i)
       # 處理方式選單結果
       choices = strsplit(as.character(input[[as.character(col)]]), ":")
-      if (choices[[1]][1] == "眾數") {
+      if (choices[[1]][1] == "Mode") {
         # 以眾數作為取代值
         replace.col = names(sort(-table(data[[mvColnames[i]]])))[1]
       } else {
@@ -79,7 +79,7 @@ data <- reactive({
       # 取代遺失值
       na.row = is.na(data[mvColnames[i]])
       data[na.row, mvColnames[i]] = replace.col
-      if (choices == "刪除遺失值") {
+      if (choices == "Delete Missing-Value") {
         data = data[!na.row, ]
       }
     }
@@ -97,15 +97,15 @@ data <- reactive({
       # 處理方式選單結果
       choices = strsplit(as.character(input[[as.character(cont_col)]]), ":")[[1]][1]
       replace.col <- switch(choices,
-        平均數 = mean(data[[mvColnames[i]]], na.rm = TRUE),
-        中位數 = median(data[[mvColnames[i]]], na.rm = TRUE),
-        眾數 = getmode(data[[mvColnames[i]]]),
+        Mean = mean(data[[mvColnames[i]]], na.rm = TRUE),
+        Median = median(data[[mvColnames[i]]], na.rm = TRUE),
+        Mode = getmode(data[[mvColnames[i]]]),
         NA
         )
       # 取代遺失值
       na.row = is.na(data[mvColnames[i]])
       data[na.row, mvColnames[i]] = replace.col
-      if (choices == "刪除遺失值") {
+      if (choices == "Delete Missing-Value") {
         data = data[!na.row, ]
       }
     }
@@ -157,9 +157,9 @@ output$data_summary <- renderUI({
   req(data())
   req(colTypeData())
   summary <- data.frame(
-    "資料筆數" = nrow(data()),
-    "類別變數" = length(colTypeData()$cate),
-    "連續變數" = length(colTypeData()$cont)
+    "Data Size" = nrow(data()),
+    "Categorical" = length(colTypeData()$cate),
+    "Continuous" = length(colTypeData()$cont)
   )
   output$summary_table <- renderTable({
     summary
@@ -178,9 +178,11 @@ output$page01_variables <- renderUI({
     selectInputList[[i]] = selectInput(
       paste0("page1_var", i),
       dataColnames[i],
-      choices = c("類別", "連續"),
+      choices = c("Categorical", "Continuous"),
       # 判斷是何種類型
-      selected = ifelse(class(as.data.frame(data)[, i]) == "numeric", "連續", "類別")
+      selected = ifelse(class(as.data.frame(data)[, i]) == "numeric",
+      "Continuous", "Categorical"
+      )
     )
   }
   selectInputList
@@ -192,14 +194,14 @@ output$rowNums <- renderUI({
   N <- nrow(data())
   numericInput(
     "row_nums",
-    "顯示列數:",
+    "Rows:",
     min = 1, max = N, value = 5)
 })
 output$colNums <- renderUI({
   N <- length(colnames(data()))
   numericInput(
     "col_nums",
-    "顯示欄位數:",
+    "Columns:",
     min = 1, max = N, value = 6)
 })
 
@@ -221,7 +223,7 @@ colTypeData <- reactive({
   for (i in seq_len(length(coldata))) {
     type <- paste0("page1_var", i)
 
-    if (input[[as.character(type)]] == "類別") {
+    if (input[[as.character(type)]] == "Categorical") {
       cate_index = c(cate_index, i)
     } else {
       cont_index = c(cont_index, i)
@@ -306,11 +308,11 @@ output$page01_ui_tables <- renderUI({
   # 動態產生類別型表格的資料
   # 迴圈
       # 輸出 result
-    Result <- list(h5(strong('類別型資料:')))
+    Result <- list(h5(strong('Categorical Data:')))
     # 產生前端的 tableOutput
     if (length(cateCols) == 0) {
       # 不明顯
-      Result[2] = "未有類別型資料"
+      Result[2] = "No Categorical Data"
     } else {
       for(i in 1:(cate_dataPage + ifelse(cate_left > 0, 1, 0))) {
         catetableId = paste0("cateTable_", i)
@@ -318,10 +320,10 @@ output$page01_ui_tables <- renderUI({
       }
     }
     ### 連續型資料
-    Result[[length(Result) + 1]] <- list(h5(strong("連續型資料:")))
+    Result[[length(Result) + 1]] <- list(h5(strong("Continuous Data:")))
     Start <- length(Result)
     if (length(contCols) == 0) {
-      Result[Start + 1] = "未有連續型資料"
+      Result[Start + 1] = "No Continous Data"
     } else {
       for(i in 1:(cont_dataPage + ifelse(cont_left > 0, 1, 0))) {
         conttableId = paste0("contTable_", i)
@@ -355,13 +357,13 @@ output$missvalue_select <- renderUI({
       mean_value = mean(data[[mvColnames[i]]], na.rm = TRUE)
       median_value = median(data[[mvColnames[i]]], na.rm = TRUE)
       mode_value = getmode(data[[mvColnames[i]]])
-      mean_label = paste0("平均數:", round(mean_value, 2))
-      median_label = paste0("中位數:", round(median_value, 2))
-      mode_label = paste0("眾數:", mode_value)
+      mean_label = paste0("Mean:", round(mean_value, 2))
+      median_label = paste0("Median:", round(median_value, 2))
+      mode_label = paste0("Mode:", mode_value)
       MVselectInputList[[i]] = selectInput(
         paste0("page01_MVcontmethod", i),
-        paste0("連續型：", mvColnames[i], ";  遺失值數量：", MV_num),
-        choices = c("保留" = "null", mean_label, median_label, mode_label,  "刪除遺失值"),
+        paste0("Continuous：", mvColnames[i], ";    Num：", MV_num),
+        choices = c("Keep" = "null", mean_label, median_label, mode_label,  "Delete Missing-Value"),
         selected = "null"
       )
     }
@@ -377,8 +379,8 @@ output$missvalue_select <- renderUI({
       mode_label = paste0("眾數:", mode_value)
       MVcateselectInputList[[i]] = selectInput(
         paste0("page01_MVcatemethod", i),
-        paste0("類別型：", mvColnames[i], ";  遺失值數量：", MV_num),
-        choices = c("保留" = "null", mode_label, "刪除遺失值"),
+        paste0("Categorical：", mvColnames[i], ";   Num：", MV_num),
+        choices = c("Keep" = "null", mode_label, "Delete Missing-Value"),
         # 判斷是何種類型
         selected = "null"
       )

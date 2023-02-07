@@ -7,7 +7,7 @@ output$page02_ui_select_x <- renderUI({
   names(choices) = colTypeData()$label_cont
   selectInput(
     inputId = "page02_select_x",
-    label = labelWithInfo("X 軸變數 (連續型)", "page2_actionLink_x"),
+    label = labelWithInfo("X-aixs Variable (Continuous)", "page2_actionLink_x"),
     choices = choices
   )
 })
@@ -23,7 +23,7 @@ output$page02_ui_select_y <- renderUI({
   List_y_without_x <- choices[choices != input$page02_select_x]
   selectInput(
     inputId = "page02_select_y",
-    label = labelWithInfo("Y 軸變數 (連續型)", "page02_actionLink_y"),
+    label = labelWithInfo("Y-axis Variable (Continuous)", "page02_actionLink_y"),
     choices = List_y_without_x)
 })
 observeEvent(input$page02_actionLink_y, {
@@ -37,7 +37,7 @@ output$page02_ui_x_title <- renderUI({
   default = colTypeData()$label[index]
   textInput(
     'page02_ui_x_title_text1',
-    label = 'X軸標題', 
+    label = 'X-axis Title', 
     value = default
   )
 })
@@ -47,7 +47,7 @@ output$page02_ui_y_title <- renderUI({
   default = colTypeData()$label[index]
   textInput(
     'page02_ui_y_title_text1',
-    label = 'Y軸標題', 
+    label = 'Y-axis TItle', 
     value = default
   )
 })
@@ -63,17 +63,17 @@ output$page2_OthersVar <- renderUI({
   tagList(
     selectInput(
       "select_color",
-      labelWithInfo("顏色變數", "page02_select_color"),
+      labelWithInfo("Color Variable", "page02_select_color"),
       choices = c("NULL", variable)
     ),
     selectInput(
       "select_shape",
-      labelWithInfo("形狀變數 (類別型)", "page02_select_shape"),
+      labelWithInfo("Shape Variable (Categorical)", "page02_select_shape"),
       choices = c("NULL", choice_cate)
     ),
     selectInput(
       "select_size",
-      labelWithInfo("尺寸變數 (連續型)", "page02_select_size"),
+      labelWithInfo("Size Variable (Continuous)", "page02_select_size"),
       choices = c("NULL", choices_cont)
     )
   )
@@ -99,7 +99,7 @@ output$page02_colour <- renderUI({
   req(input$select_color)
   check_box = checkboxInput(
     'page02_colors_check1',
-    label = '自訂顏色'
+    label = 'Customise Color'
   )
   if (input$select_color == "NULL") {
     check_box
@@ -114,7 +114,7 @@ output$page02_choose_color <- renderUI({
   if (input$page02_colors_check1 == TRUE & input$select_color == "NULL") {
     colourpicker::colourInput(
       'page02_ui_colour',
-      label = '顏色:',
+      label = 'Color (dot):',
       palette = 'square',
       value = '#00BFC4'
     )
@@ -126,7 +126,7 @@ output$page02_choose_color <- renderUI({
 output$page02_choose_size <- renderUI({
   req(input$select_size)
   if (input$select_size == "NULL") {
-    numericInput("page02_ui_size", "尺寸(點)",
+    numericInput("page02_ui_size", "Size (Dot)",
     min = 1, value = 2)
   } else {
     ""

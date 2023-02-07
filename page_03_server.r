@@ -7,7 +7,7 @@ output$page03_ui_discrete_x_select1 <- renderUI({
   names(choices_x) = colTypeData()$label_cate
   selectInput(
     'page03_discrete_x_select1',
-    label = labelWithInfo('X 軸變數 (類別型)', 'page03_actionLink_discrete_x'),
+    label = labelWithInfo('X-axis Variable(Categorical)', 'page03_actionLink_discrete_x'),
     choices = choices_x
   )
 })
@@ -24,7 +24,7 @@ output$page03_ui_x_title_text1 <- renderUI({
   default_03_X = colTypeData()$label[index_03_X]
   textInput(
     'page03_x_title_text1',
-    label = 'X軸標題',
+    label = 'X-axis Title',
     value = default_03_X
     )
 })
@@ -53,7 +53,7 @@ output$page03_ui_y_title_text1 <- renderUI({
   default_03_y = colTypeData()$label[index_03_y]
   textInput(
     'page03_y_title_text1',
-    label = 'Y軸標題',
+    label = 'Y-axis Title',
     value = default_03_y
   )
 })
