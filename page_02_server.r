@@ -13,7 +13,7 @@ output$page02_ui_select_x <- renderUI({
 })
 observeEvent(input$page2_actionLink_x, {
   shinyalert(
-   text = "請選擇欲呈現於x軸之連續變數。"
+   text = "Select the variables to show on X-axis"
   )
 })
 # 變數 Y
@@ -28,7 +28,7 @@ output$page02_ui_select_y <- renderUI({
 })
 observeEvent(input$page02_actionLink_y, {
   shinyalert(
-    text = "請選擇欲呈現於y軸之連續變數。"
+    text = "Select the variables to show on Y-axis"
   )
 })
 # x軸標題
@@ -80,17 +80,17 @@ output$page2_OthersVar <- renderUI({
 })
 observeEvent(input$page02_select_color, {
   shinyalert(
-    text = "請選擇是否要已顏色變數區分"
+    text = "Whether to use Color to distinguish"
   )
 })
 observeEvent(input$page02_select_shape, {
   shinyalert(
-    text = "請選擇是否要已形狀變數區分"
+    text = "Whether to use Shape to distinguish"
   )
 })
 observeEvent(input$page02_select_size, {
   shinyalert(
-    text = "請選擇是否要已尺寸變數區分"
+    text = "Whether to use Size to distinguish"
   )
 })
 
