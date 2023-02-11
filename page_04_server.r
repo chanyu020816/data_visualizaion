@@ -14,8 +14,7 @@ output$page04_ui_discrete_select1 <- renderUI({
 ## 說明視窗(X軸)
 observeEvent(input$page04_actionLink_discrete_x, {
   shinyalert(
-    text = '請選擇欲呈現於X軸之類別變數。
-    (將以此變數按照資料順序做排序。)'
+    text = 'Select the variables to show on X-axis'
   )
 })
 ## X軸標題
@@ -46,32 +45,21 @@ output$page04_ui_group_select1 <- renderUI({
 ## 說明視窗(Y軸)
 observeEvent(input$page04_actionLink_continuous, {
   shinyalert(
-    text = '請選擇欲呈現於Y軸之連續變數。'
-  )
-})
-
-## 說明視窗(呈現方式)
-observeEvent(input$page04_actionLink_fun, {
-  shinyalert(
-    text = '總和 : 長條以總和方式呈現。
-      平均數 : 長條以平均數方式呈現。
-      最大值 : 長條以最大值方式呈現。
-      最小值 : 長條以最小值方式呈現。
-    '
+    text = 'Select the variables to show on Y-axis'
   )
 })
 
 ## 說明視窗(軸標題 + 右側圖示標題)
 observeEvent(input$page04_actionLink_axis_title, {
   shinyalert(
-    text = '包含右側圖示標題。'
+    text = 'Include label on the right'
   )
 })
 
 ## 說明視窗(軸標籤 + 右側圖示標籤)
 observeEvent(input$page04_actionLink_axis_label, {
   shinyalert(
-    text = '包含右側圖示標籤。'
+    text = 'Include label on the right'
   )
 })
 

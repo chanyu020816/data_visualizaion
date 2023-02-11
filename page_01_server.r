@@ -140,14 +140,14 @@ output$page01_sheet_choices <- renderUI({
     sheet_name = excel_sheets(input$page01_file1$datapath)
     selectInput(
       "sheet_select",
-      "sheet",
+      "Sheet",
       choices = sheet_name
     )
   } else if (file_type == "ods") {
     sheet_name = list_ods_sheets(input$page01_file1$datapath)
     selectInput(
       "sheet_select",
-      "sheet",
+      "Sheet",
       choices = sheet_name
     )
   }

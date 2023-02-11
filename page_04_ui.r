@@ -22,12 +22,7 @@ tabItem(
             # 說明視窗
             label = HTML(
               'Measurement',
-              as.character(actionLink(
-                'page04_actionLink_fun',
-                label = '',
-                icon = icon(name = 'question-circle', lib = 'font-awesome', 'fa-xs')
-                )
-              )
+              ""
             ),
             choices = c("Sum" = '總和', "Mean" = '平均數', "Max" = '最大值', "Min" = '最小值'),
             selected = '平均數'
