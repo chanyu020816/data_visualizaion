@@ -1,0 +1,14 @@
+name: data_visualization
+title:
+username:
+account: chanyu02
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6593058
+bundleId: 6835109
+url: https://chanyu02.shinyapps.io/data_visualization/
+when: 1676105341.25195
+lastSyncTime: 1676105341.25196
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: init.r|Procfile|readme.md|run.r|runapp.r

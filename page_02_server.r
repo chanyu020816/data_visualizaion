@@ -7,7 +7,7 @@ output$page02_ui_select_x <- renderUI({
   names(choices) = colTypeData()$label_cont
   selectInput(
     inputId = "page02_select_x",
-    label = labelWithInfo("X-aixs Variable (Continuous)", "page2_actionLink_x"),
+    label = labelWithInfo("X-aixs (Continuous)", "page2_actionLink_x"),
     choices = choices
   )
 })
@@ -23,7 +23,7 @@ output$page02_ui_select_y <- renderUI({
   List_y_without_x <- choices[choices != input$page02_select_x]
   selectInput(
     inputId = "page02_select_y",
-    label = labelWithInfo("Y-axis Variable (Continuous)", "page02_actionLink_y"),
+    label = labelWithInfo("Y-axis (Continuous)", "page02_actionLink_y"),
     choices = List_y_without_x)
 })
 observeEvent(input$page02_actionLink_y, {
@@ -63,17 +63,17 @@ output$page2_OthersVar <- renderUI({
   tagList(
     selectInput(
       "select_color",
-      labelWithInfo("Color Variable", "page02_select_color"),
+      labelWithInfo("Color", "page02_select_color"),
       choices = c("NULL", variable)
     ),
     selectInput(
       "select_shape",
-      labelWithInfo("Shape Variable (Categorical)", "page02_select_shape"),
+      labelWithInfo("Shape (Categorical)", "page02_select_shape"),
       choices = c("NULL", choice_cate)
     ),
     selectInput(
       "select_size",
-      labelWithInfo("Size Variable (Continuous)", "page02_select_size"),
+      labelWithInfo("Size (Continuous)", "page02_select_size"),
       choices = c("NULL", choices_cont)
     )
   )

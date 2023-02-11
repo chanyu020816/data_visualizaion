@@ -1,2 +1,2 @@
 library(shiny)
-shiny::runApp("~/Desktop/project/DataVisualization_website/")
+shiny::runApp("~/Desktop/project/DataVisualization_website")

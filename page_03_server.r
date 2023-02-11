@@ -7,7 +7,7 @@ output$page03_ui_discrete_x_select1 <- renderUI({
   names(choices_x) = colTypeData()$label_cate
   selectInput(
     'page03_discrete_x_select1',
-    label = labelWithInfo('X-axis Variable(Categorical)', 'page03_actionLink_discrete_x'),
+    label = labelWithInfo('X-axis (Categorical)', 'page03_actionLink_discrete_x'),
     choices = choices_x
   )
 })
