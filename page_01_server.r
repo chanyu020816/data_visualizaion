@@ -363,7 +363,7 @@ output$missvalue_select <- renderUI({
       MVselectInputList[[i]] = selectInput(
         paste0("page01_MVcontmethod", i),
         paste0("Continuous：", mvColnames[i], ";    Num：", MV_num),
-        choices = c("Keep" = "null", mean_label, median_label, mode_label,  "Delete Missing-Value"),
+        choices = c("Retain" = "null", mean_label, median_label, mode_label,  "Delete Missing-Value"),
         selected = "null"
       )
     }

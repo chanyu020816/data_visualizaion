@@ -3,13 +3,13 @@ tabItem(
   tabName = 'ranking_barChart',
   fluidRow(
     box(
-      width = 4 ,
+      width = 4,
       headerBorder = FALSE,
       collapsible = FALSE,
       tabsetPanel(
         # 變數分頁
         tabPanel(
-          '變數',
+          'Variable',
           # 選擇x軸變數(類別)
           uiOutput('page03_ui_discrete_x_select1'),
           # 選擇y軸變數(連續)
@@ -21,8 +21,7 @@ tabItem(
         ),
         # 外觀分頁
         tabPanel(
-          '外觀',
-          h6('輸入標題:', style = 'font-Weight:bold; font-size:16px;'),
+          'Appearance',
           # 圖標題
           textInput('page03_ui_title_text1', label = '圖標題', value = '長條圖'),
           splitLayout(
@@ -32,7 +31,7 @@ tabItem(
             uiOutput('page03_ui_y_title_text1')
           ),
           # 字體尺寸設定
-          h6('字體尺寸:', style = 'font-Weight: bold; font-size: 16px;'),
+          h5('字體尺寸:', style = 'font-Weight: bold; font-size: 16px;'),
           # 選擇圖標題字體尺寸
           numericInput('page03_ui_title_num1', label = '圖標題', value = 20),
           splitLayout(
@@ -103,7 +102,9 @@ tabItem(
         color = '#0dc5c1'
         ),
       # 下載
-      column(12, align = 'right', downloadButton('downloadPlot', '下載'))
+      column(12, align = 'right', 
+        uiOutput("page03_download_button")
+      )
     )
   )
 )

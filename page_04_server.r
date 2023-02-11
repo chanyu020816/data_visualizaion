@@ -7,7 +7,7 @@ output$page04_ui_discrete_select1 <- renderUI({
   names(choices_x_04) = colTypeData()$label_cate
   selectInput(
     'page04_discrete_select1',
-    label = labelWithInfo('X 軸變數 (類別型)', 'page04_actionLink_discrete_x'),
+    label = labelWithInfo('X-axis (Categorical)', 'page04_actionLink_discrete_x'),
     choices = choices_x_04
   )
 })
@@ -24,7 +24,7 @@ output$page04_ui_x_title_text1 <- renderUI({
   default_04_X = colTypeData()$label[index_04_X]
   textInput(
     'page04_x_title_text1',
-    label = 'X軸標題',
+    label = 'X-axis Title',
     value = default_04_X
   )
 })
@@ -36,7 +36,7 @@ output$page04_ui_group_select1 <- renderUI({
   names(choices_y_04) = colTypeData()$label_cont
   selectInput(
     'page04_group_select1',
-    label = labelWithInfo('Y 軸變數 (連續型)(可複選)','page04_actionLink_continuous'),
+    label = labelWithInfo('Y-axis (Continuous)(Multiple)','page04_actionLink_continuous'),
     choices = choices_y_04,
     selected = NULL,
     multiple = TRUE,
@@ -54,9 +54,9 @@ observeEvent(input$page04_actionLink_continuous, {
 observeEvent(input$page04_actionLink_fun, {
   shinyalert(
     text = '總和 : 長條以總和方式呈現。
-  平均數 : 長條以平均數方式呈現。
-  最大值 : 長條以最大值方式呈現。
-  最小值 : 長條以最小值方式呈現。
+      平均數 : 長條以平均數方式呈現。
+      最大值 : 長條以最大值方式呈現。
+      最小值 : 長條以最小值方式呈現。
     '
   )
 })
@@ -82,7 +82,7 @@ output$page04_group_colours <- renderUI({
   for (i in seq_len(length(input$page04_group_select1))) {
     colourInputList_04[[i]] = colourInput(
       paste0('page4_colour_', i),
-      label = paste0('第', i, '個變數'),
+      label = paste('variable', i),
       palette = 'square',
       value = hue_pal()(i)[i]
     )
@@ -213,19 +213,24 @@ observe({
   )
 })
 # 下載
-output$downloadPlot_1 <- downloadHandler(
-  filename = function() {
-    # 下載後的名字
-    paste(input$page04_ui_title_text1, '.png', sep = ' ')
-  },
-  content = function(file) {
-    ggsave(
-      file,
-      dpi = 'screen',
-      units = 'px',
-      width = input$page04_ui_download_width_num1,
-      height = input$page04_ui_download_height_num1)
-  }
-)
+output$page04_download_button <- renderUI({
+  req(input$page01_file1)
+  output$downloadPlot_1 <- downloadHandler(
+    filename = function() {
+      # 下載後的名字
+      paste(input$page04_ui_title_text1, '.png', sep = ' ')
+    },
+    content = function(file) {
+      ggsave(
+        file,
+        dpi = 'screen',
+        units = 'px',
+        width = input$page04_ui_download_width_num1,
+        height = input$page04_ui_download_height_num1)
+    }
+  )
+})
+
+
 
 outputOptions(output, 'page04_ui_x_title_text1', suspendWhenHidden = FALSE)

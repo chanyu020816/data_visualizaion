@@ -224,26 +224,29 @@ observe({
   )
 })
 # 下載
-output$download <- downloadHandler(
-  filename = function() {
-    paste0(input$page2_title, ".png")
-  },
-  content = function(file) {
-    ggsave(
-      file,
-      dpi = 'screen',
-      units = 'px',
-      width = input$page02_download_width,
-      height = input$page02_download_height
-    )
-  }
-)
+output$page02_download_button <- renderUI({
+  req(input$page01_file1)
+  output$download <- downloadHandler(
+    filename = function() {
+      paste0(input$page2_title, ".png")
+    },
+    content = function(file) {
+      ggsave(
+        file,
+        dpi = 'screen',
+        units = 'px',
+        width = input$page02_download_width,
+        height = input$page02_download_height
+      )
+    }
+  )
+})
 
 outputOptions(output, "page02_colour", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_choose_color", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_choose_size", suspendWhenHidden = FALSE)
-outputOptions(output, "page02_ui_x_title", suspendWhenHidden = FALSE)
 outputOptions(output, "page02_ui_y_title", suspendWhenHidden = FALSE)
+outputOptions(output, "page02_ui_x_title", suspendWhenHidden = FALSE)
 
 ###
 # r
