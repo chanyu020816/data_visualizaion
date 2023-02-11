@@ -99,7 +99,7 @@ output$page02_colour <- renderUI({
   req(input$select_color)
   check_box = checkboxInput(
     'page02_colors_check1',
-    label = 'Customise Color'
+    label = 'Color customier'
   )
   if (input$select_color == "NULL") {
     check_box

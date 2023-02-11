@@ -94,7 +94,7 @@ tabItem(
             sliderInput('page04_ui_point_slider1', label = 'Opacity (Dot):', min = 0, max = 1, value = .7)
           ),
           # 顏色
-          checkboxInput('page04_group_colours_check1', label = 'Customise Color'),
+          checkboxInput('page04_group_colours_check1', label = 'Color customizer'),
           uiOutput('page04_group_colours'),
           splitLayout(
             # 下載圖片的寬

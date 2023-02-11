@@ -14,8 +14,7 @@ output$page03_ui_discrete_x_select1 <- renderUI({
 ## 說明視窗(x軸)
 observeEvent(input$page03_actionLink_discrete_x, {
   shinyalert(
-    text = '請選擇欲呈現於X軸之類別變數。
-    (將以此變數之類別作為分組依據。)'
+    text = 'Select the variable to show on X-axis'
   )
 })
 ## x軸標題
@@ -37,14 +36,14 @@ output$page03_ui_continuous_select1 <- renderUI({
   # 下拉選單
   selectInput(
     'page03_continuous_select1',
-    label = labelWithInfo('Y 軸變數 (連續型)', 'page03_actionLink_continuous'),
+    label = labelWithInfo('Y-axis (Continuous)', 'page03_actionLink_continuous'),
     choices = choices_y
   )
 })
 ## 說明視窗(Y軸)
 observeEvent(input$page03_actionLink_continuous, {
   shinyalert(
-    text = '請選擇欲呈現於Y軸之連續變數。'
+    text = 'Select the variable to show on Y-axis'
   )
 })
 ## Y軸標題
@@ -63,16 +62,10 @@ output$barchart_fun_select1 <- renderUI({
     'page03_ui_fun_select1',
     # 說明視窗
     label = HTML(
-      '呈現方式',
-      as.character(
-        actionLink(
-          'page03_actionLink_fun',
-          label = '',
-          icon = icon(name = 'question-circle', lib = 'font-awesome', 'fa-xs')
-        )
-      )
+      'Measurement',
+      ""
     ),
-    choices = c('總和', '平均數', '最大值', '最小值', '計數'),
+    choices = c("Sum" = '總和', "Mean" = '平均數', "Max" = '最大值', "Min" = '最小值', "Count" = '計數'),
     selected = '平均數'
   )
 })
@@ -83,43 +76,30 @@ output$page03_ui_discrete_group_select1 <- renderUI({
   names(choices_group) = colTypeData()$label_cate[colTypeData()$cate != input$page03_discrete_x_select1]
   selectInput(
     'page03_discrete_group_select1',
-    label = labelWithInfo('群組變數 (類別型)', 'page03_actionLink_discrete_group'),
+    label = labelWithInfo('Group Variable (Categorical)', 'page03_actionLink_discrete_group'),
     choices = c('NULL', choices_group)
   )
 })
 ## 說明視窗(群組)
 observeEvent(input$page03_actionLink_discrete_group, {
   shinyalert(
-    text = '請選擇欲在X軸變數各組中，以不同顏色呈現之類別變數。
-      (NULL:不選擇任何變數。)'
+    text = 'Select the categorical variable showed in different color in X-axis
+      (NULL:Not chosing any variable)'
   )
 })
 
-## 說明視窗(呈現方式)
-observeEvent(input$page03_actionLink_fun, {
-  shinyalert(#animation = 'slide-from-bottom',
-    text = '
-      總和 : 長條以總和方式呈現。
-      平均數 : 長條以平均數方式呈現。
-      最大值 : 長條以最大值方式呈現。
-      最小值 : 長條以最小值方式呈現。
-        計數 : 若群組變數選擇NULL，將呈現所選X軸變數之各類別的個數;
-               若群組變數非選擇NULL，將呈現所選群組變數在X軸變數分組下之各類別的個數。
-    '
-  )
-})
 
 ## 說明視窗(軸標題 + 右側圖示標題)
 observeEvent(input$page03_actionLink_axis_title, {
   shinyalert(
-    text = '選擇群組變數時，包含右側圖示標題。'
+    text = 'Include label on the right'
   )
 })
 
 ## 說明視窗(軸標籤 + 右側圖示標籤)
 observeEvent(input$page03_actionLink_axis_label, {
   shinyalert(
-    text = '選擇群組變數時，包含右側圖示標籤。'
+    text = 'Include label on the right'
   )
 })
 

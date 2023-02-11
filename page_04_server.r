@@ -14,7 +14,7 @@ output$page04_ui_discrete_select1 <- renderUI({
 ## 說明視窗(X軸)
 observeEvent(input$page04_actionLink_discrete_x, {
   shinyalert(
-    text = 'Select the variables to show on X-axis'
+    text = 'Select the variable to show on X-axis'
   )
 })
 ## X軸標題
@@ -45,7 +45,7 @@ output$page04_ui_group_select1 <- renderUI({
 ## 說明視窗(Y軸)
 observeEvent(input$page04_actionLink_continuous, {
   shinyalert(
-    text = 'Select the variables to show on Y-axis'
+    text = 'Select the variable to show on Y-axis'
   )
 })
 

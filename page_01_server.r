@@ -124,8 +124,7 @@ output$encoding_problem <- renderUI({
     },
     error = function(cnd) {
       p(
-        "讀取資料發生問題，請嘗試切換編碼。
-        若還是有問題，代表為資料讀取問題，請自行處理成 R 可以讀取的資料格式。",
+        "If the webiste is still error, try to change to Encoding",
         style = "color: red"
       )
     }

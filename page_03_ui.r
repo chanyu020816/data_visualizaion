@@ -23,7 +23,7 @@ tabItem(
         tabPanel(
           'Appearance',
           # 圖標題
-          textInput('page03_ui_title_text1', label = '圖標題', value = '長條圖'),
+          textInput('page03_ui_title_text1', label = 'Title', value = 'Bar Chart'),
           splitLayout(
             # X軸標題
             uiOutput('page03_ui_x_title_text1'),
@@ -31,15 +31,15 @@ tabItem(
             uiOutput('page03_ui_y_title_text1')
           ),
           # 字體尺寸設定
-          h5('字體尺寸:', style = 'font-Weight: bold; font-size: 16px;'),
+          h5('Font Size:', style = 'font-Weight: bold; font-size: 16px;'),
           # 選擇圖標題字體尺寸
-          numericInput('page03_ui_title_num1', label = '圖標題', value = 20),
+          numericInput('page03_ui_title_num1', label = 'Title', value = 20),
           splitLayout(
             # 選擇軸標題字體尺寸
             numericInput(
               'page03_ui_axis_title_num1',
               label = HTML(
-                '軸標題',
+                'Axis Title',
                 as.character(actionLink(
                   'page03_actionLink_axis_title',
                   label = '',
@@ -53,7 +53,7 @@ tabItem(
             numericInput(
               'page03_ui_axis_label_num1',
               label = HTML(
-                '軸標籤',
+                'Axis Label',
                 as.character(actionLink(
                   'page03_actionLink_axis_label',
                   label = '',
@@ -67,25 +67,25 @@ tabItem(
           # 選擇軸標籤角度
           sliderInput(
             'page03_ui_axis_angle_slider1',
-            label = '軸標籤角度:',
+            label = 'Axis-lable Angle:',
             min = 0,
             max = 90,
             value = 90
           ),
           # 顏色
-          checkboxInput('page03_colours_check1', label = '自訂顏色'),
+          checkboxInput('page03_colours_check1', label = 'Color Customier'),
           uiOutput('page03_colours'),
           splitLayout(
             # 下載圖片的寬
             numericInput(
               'page03_ui_download_width_num1',
-              label = '寬(下載):',
+              label = "Width(Download):",
               value = 600
             ),
             # 下載圖片的高
             numericInput(
               'page03_ui_download_height_num1',
-              label = '高(下載):',
+              label = "Height(Download):",
               value = 400
             )
           )
